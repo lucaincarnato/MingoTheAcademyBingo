@@ -34,9 +34,10 @@ class Scorecard: Identifiable {
         if !overlaps(with: scorecard) { return false } // Returns false if there are no overlappings
         // Picks every phrases and do cross confrontation
         for phrase in self.phrases {
+            if !phrase.status { return false } // Returns false if one phrase is not checked
             for checking in scorecard.phrases {
-                if phrase.text != checking.text { break } // Skips iteration if the phrases does not equal
-                if !phrase.status {
+                if phrase.text != checking.text { continue } // Skips iteration if the phrases does not equal
+                if !checking.status {
                     return false
                 }
             }
