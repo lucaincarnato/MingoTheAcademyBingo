@@ -1,19 +1,25 @@
 //
 //  ContentView.swift
-//  MingoTheAcademyBingo
+//  Mingo
 //
-//  Created by Luca Maria Incarnato on 08/02/25.
+//  Created by Luca Maria Incarnato on 01/02/25.
 //
 
 import SwiftUI
 
 struct ContentView: View {
+    @State var scorecardOne: Scorecard = Scorecard()
+    @State var scorecardTwo: Scorecard = Scorecard()
+    
     var body: some View {
         VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
+            ScorecardView(scorecard: $scorecardOne)
+            Text("----------------------------------")
+            ScorecardView(scorecard: $scorecardTwo)
+            Text("----------------------------------")
+            Button("Finish") {
+                print(scorecardOne.check(with: scorecardTwo))
+            }
         }
         .padding()
     }
