@@ -10,17 +10,27 @@ import SwiftUI
 struct ScorecardView: View {
     @Binding var scorecard: Scorecard
     
+    let rows = [
+        GridItem(.fixed(30), spacing: 35),
+        GridItem(.fixed(30), spacing: 35),
+        GridItem(.fixed(30), spacing: 35),
+        GridItem(.fixed(30), spacing: 35),
+    ]
+    
     var body: some View {
         VStack{
-            ForEach(scorecard.phrases) { phrase in
-                Button(){
-                    print(phrase.text)
-                    phrase.status.toggle()
-                    print(phrase.status)
-                } label: {
-                    Text(phrase.text)
-                        .font(.title2)
-                        .bold()
+            LazyHGrid(rows: rows, spacing: 0) {
+                ForEach(scorecard.phrases) { phrase in
+                    Button(){
+                        phrase.status.toggle()
+                    } label: {
+                        Text(phrase.text)
+                            .font(.title2)
+                            .bold()
+                            .frame(width: 50, height: 50)
+                    }
+                    .buttonStyle(.bordered)
+                    .foregroundStyle(Color.black)
                 }
             }
         }
