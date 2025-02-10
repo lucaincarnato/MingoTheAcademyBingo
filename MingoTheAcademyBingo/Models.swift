@@ -15,13 +15,20 @@ class Scorecard: Identifiable {
     // TODO: iCloud INTEGRATION, TO BE REMOVED
     // String database from which get phrases
     var database: [String] = [
-        "Hello", "Goodbye", "Thank you", "How are you?", "I love you", "I hate you"
+        "1", "2", "3", "4",
+        "5", "6", "7", "8",
+        "9", "10", "11", "12",
+        "13", "14", "15", "16",
+        "17", "18", "19", "20",
+        "21", "22", "23", "24",
+        "25", "26", "27", "28",
+        "29", "30", "31", "32",
     ]
     
-    // Get three random and not repetitive strings from the database and associate them to the scorecard
+    // Get 16 random and not repetitive strings from the database and associate them to the scorecard
     init() {
         phrases = []
-        var buffer = Array(self.database.shuffled().prefix(3)) // Shuffles the buffer and gets the first three
+        var buffer = Array(self.database.shuffled().prefix(16)) // Shuffles the buffer and gets the first three
         // Information migration from buffer to scorecard
         for _ in 0..<buffer.count {
             // The status is set at no because when the game starts no phrase is already been said
@@ -29,8 +36,52 @@ class Scorecard: Identifiable {
         }
     }
     
+        // Returns true if either the player has checked all the phrases in: a row, a column or a diagonal
+    func bingo() -> Bool {
+        // Make sure there are only 16 phrases
+        guard phrases.count == 16 else {
+            print("Error: the array must contain 16 phrases.")
+            return false
+        }
+        
+        // Row control
+        for row in 0..<4 {
+            let startIndex = row * 4
+            let rowSlice = phrases[startIndex..<startIndex+4]
+            if rowSlice.allSatisfy({ $0.status }) {
+                return true
+            }
+        }
+        
+        // Column control
+        for col in 0..<4 {
+            // Costruiamo l'array della colonna corrente
+            var colValues: [Phrase] = []
+            for row in 0..<4 {
+                colValues.append(phrases[row * 4 + col])
+            }
+            if colValues.allSatisfy({ $0.status }) {
+                return true
+            }
+        }
+        
+        // Main diagonal
+        if (0..<4).allSatisfy({ phrases[$0 * 4 + $0].status }) {
+            return true
+        }
+        
+        // Secundary diagonal
+        if (0..<4).allSatisfy({ phrases[$0 * 4 + (3 - $0)].status }) {
+            return true
+        }
+        
+        // No control has returned successfully, hence there is no bingo
+        return false
+    }
+
+    
     // Returns true if, the checked phrases in the scorecard are checked also in the other scorecards
-    func check(with scorecard: Scorecard) -> Bool{
+    private func check(with scorecard: Scorecard) -> Bool{
         if !overlaps(with: scorecard) { return false } // Returns false if there are no overlappings
         // Picks every phrases and do cross confrontation
         for phrase in self.phrases {
