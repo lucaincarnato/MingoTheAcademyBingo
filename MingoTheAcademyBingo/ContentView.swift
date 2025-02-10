@@ -8,20 +8,24 @@
 import SwiftUI
 
 struct ContentView: View {
-    @State var scorecardOne: Scorecard = Scorecard()
-    @State var scorecardTwo: Scorecard = Scorecard()
+    @State var scorecard: Scorecard = Scorecard()
     
     var body: some View {
-        VStack {
-            ScorecardView(scorecard: $scorecardOne)
-            Text("----------------------------------")
-            ScorecardView(scorecard: $scorecardTwo)
-            Text("----------------------------------")
-            Button("Finish") {
-                print(scorecardOne.check(with: scorecardTwo))
+        ZStack{
+            Color.red
+                .ignoresSafeArea()
+            VStack {
+                HStack {
+                    Text("Mingo")
+                        .bold()
+                        .font(.system(size: 70))
+                    Text("The academy Bingo")
+                        .frame(width: 100, alignment: .center)
+                        .font(.system(size: 25))
+                }
+                ScorecardView(scorecard: $scorecard)
             }
         }
-        .padding()
     }
 }
 
