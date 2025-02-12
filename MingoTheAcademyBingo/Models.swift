@@ -12,17 +12,11 @@ import SwiftData
 @Model
 class Scorecard {
     @Attribute(.unique) var id: UUID = UUID()
-    var phrases: [Phrase] // Set of phrases typical of a scorecard
+    var phrases: [Phrase] = []// Set of phrases typical of a scorecard
     
     // Get 16 random and not repetitive strings from the database and associate them to the scorecard
     init() {
-        phrases = []
-        var buffer =  Array(1...90).shuffled().prefix(16) // Shuffles the buffer and gets the first three
-        // Information migration from buffer to scorecard
-        for _ in 0..<buffer.count {
-            // The status is set at no because when the game starts no phrase is already been said
-            phrases.append(Phrase(text: buffer.removeFirst(), status: false))
-        }
+        setNew()
     }
     
         // Returns true if either the player has checked all the phrases in: a row, a column or a diagonal
@@ -66,6 +60,16 @@ class Scorecard {
         
         // No control has returned successfully, hence there is no bingo
         return false
+    }
+    
+    func setNew(){
+        phrases = []
+        var buffer =  Array(1...90).shuffled().prefix(16) // Shuffles the buffer and gets the first three
+        // Information migration from buffer to scorecard
+        for _ in 0..<buffer.count {
+            // The status is set at no because when the game starts no phrase is already been said
+            phrases.append(Phrase(text: buffer.removeFirst(), status: false))
+        }
     }
 
     

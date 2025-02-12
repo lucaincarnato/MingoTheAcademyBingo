@@ -19,7 +19,7 @@ struct ContentView: View {
     
     var body: some View {
         ZStack{
-            Color.red
+            Color.accentColor
                 .ignoresSafeArea()
             VStack {
                 Image("title")
@@ -34,6 +34,12 @@ struct ContentView: View {
         }
         .sheet(isPresented: $won) {
             Text("YOU WON")
+                .onAppear {
+                    DispatchQueue.main.async {
+                        scorecard?.setNew()
+                        try? context.save()
+                    }
+                }
         }
     }
 }
