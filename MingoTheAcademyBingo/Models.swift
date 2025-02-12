@@ -7,32 +7,21 @@
 
 import Foundation
 import SwiftUI
+import SwiftData
 
-class Scorecard: Identifiable {
-    var id: UUID = UUID()
+@Model
+class Scorecard {
+    @Attribute(.unique) var id: UUID = UUID()
     var phrases: [Phrase] // Set of phrases typical of a scorecard
-    
-    // TODO: iCloud INTEGRATION, TO BE REMOVED
-    // String database from which get phrases
-    var database: [String] = [
-        "1", "2", "3", "4",
-        "5", "6", "7", "8",
-        "9", "10", "11", "12",
-        "13", "14", "15", "16",
-        "17", "18", "19", "20",
-        "21", "22", "23", "24",
-        "25", "26", "27", "28",
-        "29", "30", "31", "32",
-    ]
     
     // Get 16 random and not repetitive strings from the database and associate them to the scorecard
     init() {
         phrases = []
-        var buffer = Array(self.database.shuffled().prefix(16)) // Shuffles the buffer and gets the first three
+        var buffer =  Array(1...90).shuffled().prefix(16) // Shuffles the buffer and gets the first three
         // Information migration from buffer to scorecard
         for _ in 0..<buffer.count {
             // The status is set at no because when the game starts no phrase is already been said
-            phrases.append(Phrase(text: buffer.removeFirst(), status: false, mentor: Mentor(name: "Santo", color: Color.red)))
+            phrases.append(Phrase(text: buffer.removeFirst(), status: false))
         }
     }
     
@@ -108,24 +97,15 @@ class Scorecard: Identifiable {
     }
 }
 
+@Model
 // Describes the phrases that needs to be checked
 class Phrase: Identifiable{
     var id: UUID = UUID()
-    var text: String = "" // Describe the phrases, English only
-    var mentor: Mentor
+    var text: Int = 16 // Describe the phrases, English only
     var status: Bool = false // Describes if the phrase has been already said
     
-    init(text: String, status: Bool, mentor: Mentor) {
+    init(text: Int, status: Bool) {
         self.text = text
-        self.mentor = mentor
         self.status = status
     }
 }
-
-struct Mentor {
-    var id: UUID = UUID()
-    var name: String = ""
-    var color: Color = Color.white
-}
-
-// TODO: ADD MENTORS IN PHRASE

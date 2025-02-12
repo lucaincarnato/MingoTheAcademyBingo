@@ -6,9 +6,15 @@
 //
 
 import SwiftUI
+import SwiftData
 
 struct ContentView: View {
-    @State var scorecard: Scorecard = Scorecard()
+    @Environment(\.modelContext) private var context
+    @Query private var items: [Scorecard]
+
+    var scorecard: Scorecard? {
+        items.first ?? Scorecard()
+    }
     @State var won: Bool = false
     
     var body: some View {
@@ -19,8 +25,12 @@ struct ContentView: View {
                 Image("title")
                     .resizable()
                     .scaledToFit()
-                ScorecardView(scorecard: $scorecard, won: $won)
+                ScorecardView(scorecard: scorecard!, won: $won, save: context.save)
             }
+        }
+        .onAppear() {
+            context.insert(scorecard!)
+            try? context.save()
         }
         .sheet(isPresented: $won) {
             Text("YOU WON")

@@ -8,8 +8,9 @@
 import SwiftUI
 
 struct ScorecardView: View {
-    @Binding var scorecard: Scorecard
+    @State var scorecard: Scorecard
     @Binding var won: Bool
+    var save: () throws -> Void
     
     let cellSize = UIScreen.main.bounds.width / 4
     let rows = [
@@ -26,14 +27,16 @@ struct ScorecardView: View {
                     Button {
                         phrase.status = true
                         won = scorecard.bingo()
+                        try? save()
                     } label: {
                         ZStack {
                             Image("placeholder")
                                 .resizable()
                                 .scaledToFill()
                                 .frame(width: cellSize, height: cellSize)
-                            
-                            Color.green.opacity(phrase.status ? 0.5 : 0)
+                                .overlay(){
+                                    Color.green.opacity(phrase.status ? 0.5 : 0)
+                                }
                         }
                     }
                     .frame(width: cellSize, height: cellSize)
