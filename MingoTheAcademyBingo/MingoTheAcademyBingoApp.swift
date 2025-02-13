@@ -13,7 +13,7 @@ struct MingoTheAcademyBingoApp: App {
     var body: some Scene {
         WindowGroup {
             ContentView()
-                .preferredColorScheme(.light)
+                .preferredColorScheme(.dark)
         }
         .modelContainer(for: Scorecard.self)
     }

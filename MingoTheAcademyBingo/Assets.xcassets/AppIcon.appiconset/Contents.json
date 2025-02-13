@@ -1,7 +1,7 @@
 {
   "images" : [
     {
-      "filename" : "Solid_red.svg.png",
+      "filename" : "output-onlinepngtools.png",
       "idiom" : "universal",
       "platform" : "ios",
       "size" : "1024x1024"
@@ -13,7 +13,7 @@
           "value" : "dark"
         }
       ],
-      "filename" : "Solid_red.svg 1.png",
+      "filename" : "output-onlinepngtools 1.png",
       "idiom" : "universal",
       "platform" : "ios",
       "size" : "1024x1024"
@@ -25,6 +25,7 @@
           "value" : "tinted"
         }
       ],
+      "filename" : "output-onlinepngtools-2.png",
       "idiom" : "universal",
       "platform" : "ios",
       "size" : "1024x1024"
