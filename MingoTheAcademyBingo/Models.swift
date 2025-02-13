@@ -107,6 +107,7 @@ class Phrase: Identifiable{
     var id: UUID = UUID()
     var text: Int = 16 // Describe the phrases, English only
     var status: Bool = false // Describes if the phrase has been already said
+    var rotation: Double = 0
     
     init(text: Int, status: Bool) {
         self.text = text

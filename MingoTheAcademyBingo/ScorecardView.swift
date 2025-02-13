@@ -27,6 +27,7 @@ struct ScorecardView: View {
                     Button {
                         phrase.status = true
                         won = scorecard.bingo()
+                        phrase.rotation = Double.random(in: 0..<360)
                         try? save()
                     } label: {
                         ZStack {
@@ -35,7 +36,15 @@ struct ScorecardView: View {
                                 .scaledToFill()
                                 .frame(width: cellSize, height: cellSize)
                                 .overlay(){
-                                    Color.green.opacity(phrase.status ? 0.5 : 0)
+                                    if phrase.status {
+                                        Rectangle()
+                                            .fill(Color.black.opacity(0.3))
+                                            .frame(width: cellSize, height: 1.4137*cellSize)
+                                        Image("stamp")
+                                            .resizable()
+                                            .frame(width: cellSize - 30, height: cellSize - 30)
+                                            .rotationEffect(Angle(degrees: phrase.rotation))
+                                    }
                                 }
                         }
                     }
