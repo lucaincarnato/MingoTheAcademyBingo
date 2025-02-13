@@ -10,9 +10,22 @@
 		420DE7742D57688300C249B4 /* MingoTheAcademyBingo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MingoTheAcademyBingo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		424C0DC22D5D46EA00F0E89C /* Exceptions for "MingoTheAcademyBingo" folder in "MingoTheAcademyBingo" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = 420DE7732D57688300C249B4 /* MingoTheAcademyBingo */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
+
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		420DE7762D57688300C249B4 /* MingoTheAcademyBingo */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				424C0DC22D5D46EA00F0E89C /* Exceptions for "MingoTheAcademyBingo" folder in "MingoTheAcademyBingo" target */,
+			);
 			path = MingoTheAcademyBingo;
 			sourceTree = "<group>";
 		};
@@ -255,6 +268,7 @@
 				DEVELOPMENT_TEAM = W3B7XH945C;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = MingoTheAcademyBingo/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "Mingo, the Academy Bingo";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.board-games";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -290,6 +304,7 @@
 				DEVELOPMENT_TEAM = W3B7XH945C;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = MingoTheAcademyBingo/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "Mingo, the Academy Bingo";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.board-games";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;

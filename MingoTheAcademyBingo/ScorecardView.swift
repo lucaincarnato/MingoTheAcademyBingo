@@ -30,7 +30,7 @@ struct ScorecardView: View {
                         try? save()
                     } label: {
                         ZStack {
-                            Image("placeholder")
+                            Image("\(phrase.text)")
                                 .resizable()
                                 .scaledToFill()
                                 .frame(width: cellSize, height: cellSize)

@@ -64,7 +64,7 @@ class Scorecard {
     
     func setNew(){
         phrases = []
-        var buffer =  Array(1...90).shuffled().prefix(16) // Shuffles the buffer and gets the first three
+        var buffer =  Array(1...20).shuffled().prefix(16) // Shuffles the buffer and gets the first three
         // Information migration from buffer to scorecard
         for _ in 0..<buffer.count {
             // The status is set at no because when the game starts no phrase is already been said
