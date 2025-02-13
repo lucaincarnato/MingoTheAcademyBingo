@@ -25,9 +25,9 @@ struct ScorecardView: View {
             LazyHGrid(rows: rows, spacing: 0) {
                 ForEach(scorecard.phrases) { phrase in
                     Button {
-                        phrase.status = true
+                        phrase.status.toggle()
                         won = scorecard.bingo()
-                        phrase.rotation = Double.random(in: 0..<360)
+                        if phrase.rotation == 0 { phrase.rotation = Double.random(in: 1..<360) }
                         try? save()
                     } label: {
                         ZStack {

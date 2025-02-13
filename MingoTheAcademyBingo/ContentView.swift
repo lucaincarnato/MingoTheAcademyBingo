@@ -33,13 +33,7 @@ struct ContentView: View {
             try? context.save()
         }
         .sheet(isPresented: $won) {
-            Text("YOU WON")
-                .onAppear {
-                    DispatchQueue.main.async {
-                        scorecard?.setNew()
-                        try? context.save()
-                    }
-                }
+            BingoView(scorecard: scorecard!, save: context.save)
         }
     }
 }
