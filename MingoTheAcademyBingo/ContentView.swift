@@ -22,7 +22,7 @@ struct ContentView: View {
             Color.accentColor
                 .ignoresSafeArea()
             VStack {
-                Image("title")
+                Image("Title")
                     .resizable()
                     .scaledToFit()
                 ScorecardView(scorecard: scorecard!, won: $won, save: context.save)
